@@ -1,14 +1,25 @@
-with open("file.txt","r") as file:
+def countWhitespaces(fileContent):
+    count = 0
+    for character in fileContent:
+        if character == " ":
+            count += 1
+    return count
+
+
+newFileContent = ""
+with open("file.txt", "r") as file:
     for line in file:
-        whitespaces=0
-        strings=line.split(" ")
-        whitespaces+=len(strings)
+        strings = line.split(" ")
         for string in strings:
-            if len(string)!=0:
-                if string[len(string)-1]!="\n":
-                    print(string[0].upper()+string[1:len(string)],end=" ")
+            if len(string) != 0:
+                if string[len(string) - 1] != "\n":
+                    newFileContent += string[0].upper() + string[1 : len(string)] + " "
                 else:
-                    print(string[0].upper()+string[1:len(string)],end="")
+                    newFileContent += string[0].upper() + string[1 : len(string)]
             else:
-                print(end=" ")
-    print("\nNo of whitespaces:",whitespaces)
+                newFileContent += " "
+    whitespaces = countWhitespaces(newFileContent)
+    print("No of whitespaces:", whitespaces)
+    newFileContent += "\nNo of Whitespaces: " + str(whitespaces)
+with open("newfile.txt", "w") as newFile:
+    newFile.write(newFileContent)

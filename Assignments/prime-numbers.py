@@ -1,7 +1,11 @@
-prime=[
-    i
-    for i in range(2,11)
-    if sum(1 for j in range(1,i+1) if i%j==0)==2
-]
+def is_prime(number):
+    if number < 2:
+        return False
+    for divisor in range(2, number):
+        if number % divisor == 0:
+            return False
+    return True
 
-print(prime)
+
+primes = [n for n in range(2, 11) if is_prime(n)]
+print(primes)

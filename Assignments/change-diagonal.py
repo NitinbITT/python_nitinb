@@ -1,24 +1,24 @@
 def print_matrix(matrix):
-    for i in matrix:
-        for j in i:
-            print(j,end=" ")
+    for row in matrix:
+        for value in row:
+            print(value, end=" ")
         print()
     print()
 
-matrix=[]
-size=int(input("Enter size: "))
-value=0
 
-for i in range(size):
-    row=[]
-    for j in range(size):
-        row.append(value)
-        value+=1
-    matrix.append(row)
+matrix = []
+size = int(input("Enter size: "))
+
+for row in range(size):
+    inputRow = []
+    print("Enter values: ")
+    for value in range(size):
+        inputRow.append(int(input()))
+    matrix.append(inputRow)
 print_matrix(matrix)
 
-for i in range(size):
-    temp=matrix[i][i]
-    matrix[i][i]=matrix[i][size-i-1]
-    matrix[i][size-i-1]=temp
+for index in range(size):
+    temp = matrix[index][index]
+    matrix[index][index] = matrix[index][size - index - 1]
+    matrix[index][size - index - 1] = temp
 print_matrix(matrix)

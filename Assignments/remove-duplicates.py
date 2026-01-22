@@ -1,8 +1,8 @@
-a=[1,2,3,2,1,3,4,5,1,5,3,4,2]
-b=[]
+numberList1 = [1, 2, 3, 2, 1, 3, 4, 5, 1, 5, 3, 4, 2]
+numberList2 = []
 
-for i in a:
-    if i not in b:
-        b.append(i)
+for number in numberList1:
+    if number not in numberList2:
+        numberList2.append(number)
 
-print(b)
+print("Unique Number List:", numberList2)
