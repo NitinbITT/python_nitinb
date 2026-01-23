@@ -1,8 +1,8 @@
-numberList1 = [1, 2, 3, 4, 5, 5]
-numberList2 = [7, 6, 2, 3, 5, 8, 9]
-numberList3 = []
-for number in numberList1:
-    if number in numberList2:
-        numberList3.append(number)
+number_list_first = [1, 2, 3, 4, 5, 5]
+number_list_second = [7, 6, 2, 3, 5, 8, 9]
+number_list_third = []
+for number in number_list_first:
+    if number in number_list_second:
+        number_list_third.append(number)
 
-print("Common Values in the lists:", set(numberList3))
+print("Common Values in the lists:", set(number_list_third))

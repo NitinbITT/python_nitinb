@@ -10,11 +10,11 @@ matrix = []
 size = int(input("Enter size: "))
 
 for row in range(size):
-    inputRow = []
+    input_row = []
     print("Enter values: ")
     for value in range(size):
-        inputRow.append(int(input()))
-    matrix.append(inputRow)
+        input_row.append(int(input()))
+    matrix.append(input_row)
 print_matrix(matrix)
 
 for index in range(size):

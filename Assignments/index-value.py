@@ -1,9 +1,9 @@
-def index_value(numberList):
+def index_value(number_list):
     index_value = []
-    for index in range(len(numberList)):
-        index_value.append((index, numberList[index]))
+    for index in range(len(number_list)):
+        index_value.append((index, number_list[index]))
     return index_value
 
 
-numberList = list(map(int, input("Enter the numbers ").split()))
-print(index_value(numberList))
+number_list = list(map(int, input("Enter the numbers ").split()))
+print(index_value(number_list))

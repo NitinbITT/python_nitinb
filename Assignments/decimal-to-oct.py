@@ -1,18 +1,17 @@
-def decimalToOctal(decimal):
-    rem = 0
+def decimal_to_octal(decimal):
+    remainder = 0
     digit = 1
     octal = 0
     while decimal > 0:
-        rem = decimal % 8
+        remainder = decimal % 8
         decimal //= 8
-        octal += digit * rem
+        octal += digit * remainder
         digit *= 10
     return "0o" + str(octal)
 
 
-def octalToDecimal(octal):
+def octal_to_decimal(octal):
     power = len(octal) - 3
-    print(power)
     decimal = 0
     index = 2
     while power >= 0:
@@ -24,7 +23,7 @@ def octalToDecimal(octal):
 
 decimal_number = 125
 
-octal_number = decimalToOctal(decimal_number)
-decimal_number = octalToDecimal(octal_number)
+octal_number = decimal_to_octal(decimal_number)
+decimal_number = octal_to_decimal(octal_number)
 
 print("Decimal to octal:", octal_number, "| Octal to Decimal:", decimal_number)

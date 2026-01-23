@@ -1,4 +1,4 @@
-def sortList(numbers):
+def sort_list(numbers):
     for i_index in range(len(numbers)):
         min_index = i_index
         minimum = numbers[i_index]
@@ -11,7 +11,7 @@ def sortList(numbers):
         numbers[min_index] = temp
 
 
-def sortDictionary(dictionary):
+def sort_dictionary(dictionary):
     keys = list(dictionary.keys())
     values = list(dictionary.values())
 
@@ -28,11 +28,12 @@ def sortDictionary(dictionary):
     dictionary = {}
     for index in range(len(keys)):
         dictionary[keys[index]] = values[index]
+    return dictionary
 
 
 numbers = [7, 4, 6, 2, 8, 1, 5, 3, 9]
 dictionary = {"name": "Alex", "age": 12, "height": 4.5, "weight": 30}
-sortList(numbers)
-sortDictionary(dictionary)
+sort_list(numbers)
+dictionary = sort_dictionary(dictionary)
 print("After sorting List:", numbers)
 print("After sorting dictionary:", dictionary)

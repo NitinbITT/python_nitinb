@@ -7,5 +7,5 @@ def is_prime(number):
     return True
 
 
-primes = [n for n in range(2, 11) if is_prime(n)]
+primes = [number for number in range(2, 11) if is_prime(number)]
 print(primes)
