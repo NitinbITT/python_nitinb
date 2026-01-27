@@ -1,0 +1,3 @@
+Hello     World     
+This Is Programming 
+No of Whitespaces: 13
