@@ -1,23 +1,4 @@
-class Book:
-    def __init__(self, name, author):
-        self.__name = name
-        self.__author = author
-        self.__availability = True
-
-    def get_book_name(self):
-        return self.__name
-
-    def get_book_availability(self):
-        return self.__availability
-
-    def get_book_author(self):
-        return self.__author
-
-    def put_book_availability(self, availability):
-        self.__availability = availability
-
-    def __str__(self):
-        return f"Name: {self.__name}  Author: {self.__author}  Availability: {self.__availability}"
+from Book import Book
 
 
 class Library:
@@ -26,59 +7,72 @@ class Library:
         self.__address = address
         self.__book_list = []
 
-    def display_library_details(self):
-        print("Library Details")
-        print("Name:", self.__name, " Address:", self.__address)
+    def get_all_books(self):
+        return self.__book_list
 
-    def display_all_books(self):
+    def is_book_present(self, book_name):
         for book in self.__book_list:
-            print(book)
+            if book_name.strip().lower() == book.get_name().strip().lower():
+                return book
+        return None
 
     def add_book(self, name, author):
-        for book in self.__book_list:
-            if name.strip().lower() == book.get_book_name().strip().lower():
-                print("Book already exists")
-                return
+        if self.is_book_present(name):
+            return False
         self.__book_list.append(Book(name, author))
-        print("Book added successfully")
+        return True
 
     def lend_book(self, book_name):
-        for book in self.__book_list:
-            if book_name.strip().lower() == book.get_book_name().strip().lower():
-                if book.get_book_availability():
-                    book.put_book_availability(False)
-                    print("Book lent successfully")
-                else:
-                    print("Book not available at the moment")
-                return
-        print("Book not found")
+        book = self.is_book_present(book_name)
+        if book:
+            if book.is_available():
+                book.put_availability(False)
+                return True
+            else:
+                return False
 
     def receive_book(self, book_name):
-        for book in self.__book_list:
-            if book_name.strip().lower() == book.get_book_name().strip().lower():
-                book.put_book_availability(True)
-                print("Book received successfully")
-                return
-        print("Book not found")
+        book = self.is_book_present(book_name)
+        if book:
+            if not book.is_available():
+                book.put_availability(True)
+                return True
+            else:
+                return False
 
 
 def add_book_menu(library):
     print("----- Add Book -----")
     name = input("Enter Book Name: ")
     author = input("Enter Author Name: ")
-    library.add_book(name, author)
+    if library.add_book(name, author):
+        print("Book added successfully")
+    else:
+        print("Cannot add book")
 
 
 def lend_book_menu(library):
     print("----- Lending Book -----")
     book_name = input("Enter Book Name: ")
-    library.lend_book(book_name)
+    if library.lend_book(book_name):
+        print("Book lent successfully")
+    else:
+        print("Cannot Lend Book")
 
 
 def receive_book_menu(library):
     print("----- Receiving Book -----")
     book_name = input("Enter Book Name: ")
-    library.receive_book(book_name)
+    if library.receive_book(book_name):
+        print("Book received successfully")
+    else:
+        print("Cannot recieve Book")
+
+
+def display_all_books(library):
+    books = library.get_all_books()
+    for book in books:
+        print(book)
 
 
 def library_management():
@@ -91,19 +85,23 @@ def library_management():
         print("4. Display book")
         print("5. Exit")
 
-        option = int(input("Enter an option: "))
-
-        match option:
-            case 1:
-                add_book_menu(library)
-            case 2:
-                lend_book_menu(library)
-            case 3:
-                receive_book_menu(library)
-            case 4:
-                library.display_all_books()
-            case 5:
-                return
+        try:
+            option = int(input("Enter an option: "))
+            match option:
+                case 1:
+                    add_book_menu(library)
+                case 2:
+                    lend_book_menu(library)
+                case 3:
+                    receive_book_menu(library)
+                case 4:
+                    display_all_books(library)
+                case 5:
+                    return
+                case _:
+                    print("Enter valid option")
+        except ValueError as e:
+            print(e, "Enter a number")
 
 
 library_management()
