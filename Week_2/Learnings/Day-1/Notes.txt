@@ -1,0 +1,28 @@
+What is Python ?
+* Python is an interpreted language, used for fast development with few lines of code.
+* It is dynamically typed and it is strongly typed, where the type of the variable won’t change during operations and it does not require any explicit type declarations.
+
+
+Why Python ?
+* Helps in wide range of fields like ML, backend systems etc.
+* Has wide range of library
+* It is easy to understand and simple to write
+* Helps in fast building applications.
+
+Cons of Python:
+* It is slower than other languages.
+* Uses more memory.
+* It is interpreted and only one runtime error is shown.
+
+
+Applications:
+* Scripting
+* ML
+* Data Engineers
+* Web Development
+
+
+Basic syntax : 
+* No Semicolon
+* Maintain indentation
+* No brackets for if conditions.
