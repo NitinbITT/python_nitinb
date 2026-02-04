@@ -8,24 +8,32 @@ class Mode(Enum):
 
 
 class Thermostat:
-    def __init__(self, current, target):
-        self.__current_temperature = current
-        self.__target_temperature = target
-        if self.__current_temperature > self.__target_temperature:
-            self.__mode = Mode.COOLING
-        elif self.__current_temperature < self.__target_temperature:
-            self.__mode = Mode.HEATING
+    def __init__(self, current):
+        self._current_temperature = current
+        self._target_temperature = current
+        self._mode = Mode.OFF
+
+    def set_target_temperature(self, target_temperature):
+        self._target_temperature = target_temperature
+        self.set_mode()
+
+    def set_mode(self):
+        if self._current_temperature > self._target_temperature:
+            self._mode = Mode.COOLING
+        elif self._current_temperature < self._target_temperature:
+            self._mode = Mode.HEATING
         else:
-            self.__mode = Mode.OFF
+            self._mode = Mode.OFF
 
     def get_mode(self):
-        return self.__mode.name
+        return self._mode.name
 
 
 try:
     current_temperature = int(input("Enter current temperature: "))
     target_temperature = int(input("Enter target temperature: "))
-    smart_thermostat = Thermostat(current_temperature, target_temperature)
+    smart_thermostat = Thermostat(current_temperature)
+    smart_thermostat.set_target_temperature(target_temperature)
     print("Mode:", smart_thermostat.get_mode())
 except ValueError as e:
     print(e, "Enter a valid number")

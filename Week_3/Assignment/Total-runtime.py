@@ -1,13 +1,13 @@
 import time
 
 
-def check_runtime(Function):
-    def calculate_runtime(value1, value2):
+def check_runtime(function):
+    def calculate_runtime(*args, **kwargs):
         start_time = time.perf_counter()
-        multiply_value = Function(value1, value2)
+        multiply_value = function(*args, **kwargs)
         end_time = time.perf_counter()
         print(
-            f"Function {Function.__name__} took {end_time-start_time:.4f} seconds to execute"
+            f"Function {function.__name__} took {end_time-start_time:.4f} seconds to execute"
         )
         return multiply_value
 
@@ -16,7 +16,6 @@ def check_runtime(Function):
 
 @check_runtime
 def multiply(number1, number2):
-    time.sleep(2)
     return number1 * number2
 
 

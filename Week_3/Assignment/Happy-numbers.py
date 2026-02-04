@@ -1,8 +1,8 @@
 def evaluate_number(number):
-    sum = 0
+    sumOfSquareDigits = 0
     for string_digit in str(number):
-        sum += int(string_digit) ** 2
-    return sum
+        sumOfSquareDigits += int(string_digit) ** 2
+    return sumOfSquareDigits
 
 
 def is_happy(number):
@@ -15,8 +15,8 @@ def is_happy(number):
     return True
 
 
-def next_happy_number(number):
-    number = number + 1
+def generate_happy_number(number):
+    number += 1
     while True:
         if is_happy(number):
             yield number
@@ -25,7 +25,7 @@ def next_happy_number(number):
 
 try:
     number = int(input("Enter a number:"))
-    happy_numbers = next_happy_number(number)
+    happy_numbers = generate_happy_number(number)
     print(next(happy_numbers))
 except ValueError as e:
-    print(e, "Enter a number")
+    print(e, "Invalid input. Enter a number !!")
