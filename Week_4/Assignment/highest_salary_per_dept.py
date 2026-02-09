@@ -1,3 +1,6 @@
+'''Find the names of employees who earn the highest salary in their respective departments. 
+Include the department name and salary in the result.  '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

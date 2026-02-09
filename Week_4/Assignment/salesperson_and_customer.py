@@ -1,3 +1,6 @@
+''' Write an SQL query to find all those salespeople and customers who are involved in the inventory management system. 
+Return salesperson ID, customer ID. '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

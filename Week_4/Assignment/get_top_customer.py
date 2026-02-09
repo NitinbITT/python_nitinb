@@ -1,3 +1,7 @@
+'''Write a query to find the customer who made the most orders, 
+including the total number of orders and the order dates. 
+If there is a tie, choose the customer with the lowest customer_id '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

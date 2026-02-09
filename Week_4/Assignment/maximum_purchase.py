@@ -1,3 +1,10 @@
+'''Write a SQL query using Aggregate Functions to find the maximum order (purchase) amount for each customer. 
+The customer ID should be in the range 3002 and 3007(Begin and end values are included.).
+Filter the rows for maximum order (purchase) amount is higher than 1000. Return customer id and maximum purchase amount. 
+Add a column named “Shipment Date” with the value being the 7 days after the ord_date. 
+Create a column called ins_date(DateTime) and the value of the column is current date-time. 
+Creating a column named ‘Data_Latency’ which is a difference of ins_date and shipment_date in days.'''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

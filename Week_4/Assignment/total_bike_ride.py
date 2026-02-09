@@ -1,3 +1,6 @@
+'''Write a query that shows a running total of the duration of bike rides,but grouped by end_terminal, 
+and with ride duration sorted in descending order. using ROW_NUMBER()'''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

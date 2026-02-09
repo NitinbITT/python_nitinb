@@ -1,3 +1,13 @@
+'''Assume you have a table named Orders with columns OrderID (primary key), CustomerID (foreign key), OrderDate, and TotalAmount.
+ Write an SQL script that inserts a new order into the Orders table. 
+However, implement a TRY-CATCH block to handle potential exceptions. 
+  
+If the specified CustomerID does not exist in the Customers table, raise a custom exception stating "Invalid CustomerID. Please provide a valid CustomerID." 
+  
+If there is an issue with the insertion (e.g., a violation of a unique constraint or a data type mismatch), catch the exception and print a user-friendly error message. 
+Create a column named ‘Full Name’ which is the concatenation of first_name and last_name.  
+Select all the customers with last_name being Doe '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

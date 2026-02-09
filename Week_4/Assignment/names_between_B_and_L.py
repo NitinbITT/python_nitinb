@@ -1,3 +1,6 @@
+'''write a SQL query to retrieve the details of the salespeople whose names begin with any
+ letter between 'A' and 'L' (not inclusive). Return salesman_id, name, city, commission.'''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

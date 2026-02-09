@@ -1,3 +1,6 @@
+'''Retrieve the transaction_date, product_name, and the revenue for each transaction along with the revenue of the previous and next transactions. 
+Order the result by transaction_date '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 

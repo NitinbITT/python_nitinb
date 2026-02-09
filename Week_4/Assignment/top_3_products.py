@@ -1,3 +1,11 @@
+'''You are tasked with designing a data warehouse for an online retail company that wants to analyze its sales data for business intelligence purposes. 
+Suppose the company wants to analyze the sales data to identify the top-performing products based on the total sales amount and the number of units sold. Additionally, 
+they want to include information about the customer who made the most recent purchase for each top-performing product. 
+
+Write a SQL query to retrieve the top three products based on the total sales amount and the number of units sold.
+Include the following information for each top-performing product: Product Name, Category, Total Sales Amount, Number of Units Sold, Customer Name, and Email of the Customer
+who made the most recent purchase for that product '''
+
 from sqlalchemy import text
 from DB_connect import connect_db
 
