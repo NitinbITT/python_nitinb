@@ -1,0 +1,135 @@
+1. select customer_id, count(order_id) as total_order, group_concat(order_date separator ',') as order_dates
+from orders 
+group by customer_id 
+order by total_order desc, customer_id asc
+limit 1
+
+2. select h.hacker_id , h.name, sum(s.max_score) as total_score
+from hackers h join (select hacker_id, max(score) as max_score
+from submissions
+group by hacker_id,challenge_id ) s
+on h.hacker_id=s.hacker_id
+group by hacker_id 
+having total_score>0
+order by total_score desc, hacker_id
+
+3. SELECT
+    e.employee_name,
+    d.department_name,
+    s.salary_amount
+FROM employees e
+JOIN salaries s
+    ON e.employee_id = s.employee_id
+JOIN departments d
+    ON e.department_id = d.department_id
+JOIN (
+    SELECT
+        e.department_id,
+        MAX(s.salary_amount) AS max_salary
+    FROM employees e
+    JOIN salaries s
+        ON e.employee_id = s.employee_id
+    GROUP BY e.department_id
+) ms
+    ON e.department_id = ms.department_id
+   AND s.salary_amount = ms.max_salary;
+
+
+
+4. SELECT
+    salesman_id,
+    name,
+    city,
+    commission
+FROM salesman
+WHERE name >= 'B'
+  AND name < 'L';
+
+
+5. SELECT
+    customer_id,
+    MAX(purch_amt) AS max_purchase_amount,
+    DATE_ADD(ord_date, INTERVAL 7 DAY) AS shipment_date,
+    NOW() AS ins_date,
+    DATEDIFF(
+        NOW(),
+        DATE_ADD(ord_date, INTERVAL 7 DAY)
+    ) AS Data_Latency
+FROM TableA
+WHERE customer_id BETWEEN 3002 AND 3007
+GROUP BY customer_id, ord_date
+HAVING MAX(purch_amt) > 1000;
+
+
+6. SELECT
+    ride_id,
+    start_terminal,
+    end_terminal,
+    ride_duration,
+    ROW_NUMBER() OVER (
+        PARTITION BY end_terminal
+        ORDER BY ride_duration DESC
+    ) AS row_num,
+    SUM(ride_duration) OVER (
+        PARTITION BY end_terminal
+        ORDER BY ride_duration DESC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS running_total_duration
+FROM bike_rides;
+
+
+8. SELECT DISTINCT
+    o.salesman_id,
+    o.customer_id
+FROM orders o
+JOIN customer c
+    ON o.customer_id = c.customer_id
+   AND o.salesman_id = c.salesman_id;
+
+9.SELECT
+    transaction_date,
+    product_name,
+    revenue,
+    LAG(revenue) OVER (ORDER BY transaction_date) AS prev_revenue,
+    LEAD(revenue) OVER (ORDER BY transaction_date) AS next_revenue
+FROM transaction_table
+ORDER BY transaction_date;
+
+
+10.WITH ProductSales AS (
+    SELECT
+        s.ProductID,
+        SUM(s.Quantity) AS total_units_sold,
+        SUM(s.Quantity * p.Price) AS total_sales_amount,
+        MAX(s.SaleDate) AS last_sale_date
+    FROM warehouse_sales_table s
+    JOIN warehouse_product_table p 
+        ON s.ProductID = p.ProductID
+    GROUP BY s.ProductID
+),
+RecentCustomer AS (
+    SELECT
+        ps.ProductID,
+        c.CustomerName,
+        c.Email
+    FROM ProductSales ps
+    JOIN warehouse_sales_table s
+        ON ps.ProductID = s.ProductID
+       AND s.SaleDate = ps.last_sale_date
+    JOIN warehouse_customers_table c
+        ON s.CustomerID = c.CustomerID
+)
+SELECT
+    p.ProductName,
+    p.Category,
+    ps.total_sales_amount,
+    ps.total_units_sold,
+    rc.CustomerName,
+    rc.Email
+FROM ProductSales ps
+JOIN warehouse_product_table p 
+    ON ps.ProductID = p.ProductID
+JOIN RecentCustomer rc 
+    ON ps.ProductID = rc.ProductID
+ORDER BY ps.total_sales_amount DESC, ps.total_units_sold DESC
+LIMIT 3;
