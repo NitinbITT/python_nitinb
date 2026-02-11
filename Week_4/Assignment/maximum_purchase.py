@@ -31,7 +31,7 @@ def get_max_purchase_info():
         with engine.begin() as conn:
             result = conn.execute(text(query))
             rows = result.fetchall()
-
+            
             if not rows:
                 print("No data found.")
                 return
@@ -41,8 +41,11 @@ def get_max_purchase_info():
             )
             print("-" * 80)
             for row in rows:
+                shipment_date_str = row.shipment_date.strftime("%Y-%m-%d")
+                ins_date_str = row.ins_date.strftime("%Y-%m-%d %H:%M:%S")
+    
                 print(
-                    f"{row.customer_id:<12} {row.max_purchase_amount:<15} {row.shipment_date:<15} {row.ins_date:<20} {row.Data_Latency:<12}"
+                    f"{row.customer_id:<12} {row.max_purchase_amount:<15} {shipment_date_str:<15} {ins_date_str:<20} {row.Data_Latency:<12}"
                 )
     except Exception as e:
         print("Error executing query:", e)

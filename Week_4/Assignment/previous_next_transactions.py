@@ -34,9 +34,9 @@ def get_transaction_revenue_with_lag_lead():
             for row in rows:
                 prev_rev = row.prev_revenue if row.prev_revenue is not None else "NULL"
                 next_rev = row.next_revenue if row.next_revenue is not None else "NULL"
-
+                transaction_date=row.transaction_date.strftime("%Y-%m-%d")
                 print(
-                    f"{row.transaction_date:<15} "
+                    f"{transaction_date:<15} "
                     f"{row.product_name:<15} "
                     f"{row.revenue:<10} "
                     f"{prev_rev:<15} "
